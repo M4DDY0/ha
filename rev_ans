@@ -1,0 +1,51 @@
+#first function A
+def camViewer():
+    #input given in list
+    list_km = [199, 241.9, 296.1, 372.6]
+    list_location = ["Kamuting", "Kuala Kangsar", "Gopeng", "Slim River"]
+    #display output
+    print("\nView Speed Camera Location\n")
+    print("List of speed camera location")
+    print("-----------------------------")
+    for i in range(len(list_km)):
+        print(i+1, '.\tKM', list_km[i],',',list_location[i],'junction')
+
+#second function B
+def offenderRecord():
+    #loop
+    while True:
+        #get input from user
+        print("\nEnter Offence Record\n")
+        name = input("Enter offender name: ")
+        ID = input("Enter identification number (without -): ")
+        phone_num = input("Enter phone number: ")
+        type_offnce = input("Enter type of offence: ")
+        fine = eval(input("Enter fine: "))
+        choice = input("Do you wish to continue? Press Q to Quit: ").upper()
+        print()
+        if choice == "Q":
+            break
+    
+#the function menu
+def function_menu():
+    #loop
+    while True:
+        print("-------RMP OPS Summon-------")
+        print("A: View Speed Camera Location")
+        print("B: Create New Offence Record")
+        #get input from user
+        option = input("Enter your option: ").upper()
+        #display output functions
+        if option == "A":
+            camViewer()
+        elif option == "B":
+            print()
+            offenderRecord()
+        else:
+            print("Invalid option was entered. Try again.")
+        print()
+        choice = input("Do you wish to continue? Press Q to Quit: ").upper()
+        if choice == "Q":
+            break
+    
+function_menu()
