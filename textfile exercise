@@ -1,0 +1,95 @@
+#include <iostream>
+#include <fstream>
+//exercise1 quizscore
+using namespace std;
+
+int main()
+{
+    ifstream infile;
+    infile.open("quiz1score.txt");
+    
+    int id, count;
+    string name, grade;
+    double score, total;
+    
+    while(infile >> id >> name >> score)
+    {
+        if (score < 5)
+            grade = "Fail";
+        else
+            grade = "Pass";
+        cout << id << " " << name << " " << score << endl;
+        total += score;
+        count ++;
+    }
+    
+    cout << "Average score is " << total/count << endl;
+    infile.close();
+    return 0;
+}
+
+
+
+#include <iostream>
+#include <fstream>
+//exercise2 books (get input from user)
+using namespace std;
+
+struct Book {
+    int id;
+    string title, author, publisher;
+    float price;
+    int pages;
+};
+
+const int MAX_BOOKS = 3;
+
+int main() {
+    Book books[MAX_BOOKS];
+    for (int i = 0; i < MAX_BOOKS; ++i) {
+        cout << "Enter details for Book #" << i + 1 << endl;
+        cout << "ID: ";
+        cin >> books[i].id;
+
+        cin.ignore(); // Clear the input before read strings
+
+        cout << "Title: ";
+        getline(cin, books[i].title);
+
+        cout << "Author: ";
+        getline(cin, books[i].author);
+
+        cout << "Publisher: ";
+        getline(cin, books[i].publisher);
+
+        cout << "Price: ";
+        cin >> books[i].price;
+
+        cout << "Number of Pages: ";
+        cin >> books[i].pages;
+
+        cout << endl;
+    }
+
+    // Save the data to a text file
+    ofstream outFile("bookdata.txt");
+    if (!outFile) {
+        cout << "Error opening the file." << endl;
+        return 1;
+    }
+
+    for (int i = 0; i < MAX_BOOKS; ++i) {
+        outFile << "ID: " << books[i].id << endl;
+        outFile << "Title: " << books[i].title << endl;
+        outFile << "Author: " << books[i].author << endl;
+        outFile << "Publisher: " << books[i].publisher << endl;
+        outFile << "Price: " << books[i].price << endl;
+        outFile << "Number of Pages: " << books[i].pages << endl;
+        outFile << endl;
+    }
+
+    outFile.close();
+    cout << "Data saved to bookdata.txt successfully." << endl;
+
+    return 0;
+}
