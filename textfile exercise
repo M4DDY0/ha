@@ -93,3 +93,116 @@ int main() {
 
     return 0;
 }
+
+//Lab 11 Activity 1
+
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+int main(){
+    
+    double amt, total;
+    int assist, payment;
+    int count = 0;
+    char ans;
+    
+    ifstream infile;
+    infile.open("gasstation.txt");
+    ofstream outfile;
+    outfile.open("output.txt");
+    
+    outfile << "** PATRICK GAS STATION **" << endl;
+    while (!infile.eof()) 
+    {
+        total = 0;
+        outfile << "Customer " << ++count << ": " << endl;
+        infile >> amt >> assist >> payment;
+        
+        if (assist == 0)
+            total = amt;
+        else 
+        {
+            if (amt < 50)
+                total = amt + 0.50;
+            
+            else
+                total = amt;
+            
+        }
+        
+        if (payment == 1)
+            total = total + 0.05 * total;
+        outfile << "=======================================" << endl;
+        outfile << "TOTAL charge ==> RM " << fixed << setprecision(2) << total << endl;
+        outfile << "=======================================" << endl;
+        outfile << endl;
+    }
+    
+    infile.close();
+    outfile.close();
+    return 0;
+}
+
+
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+
+// L11_Activity 2 not finished yet
+int main()
+{
+    int destination, adults, children;
+    double cost, charge, total, sum, avg, max, min;
+    int count = 0;
+    
+    ifstream infile;
+    infile.open("travelingdata.txt");
+    ofstream outfile;
+    outfile.open("output.txt");
+    
+    outfile << "** HOLIDAY WEEKEND WOOHOO **" << endl;
+    while (!infile.eof())
+    {
+        total = 0;
+        outfile << "Group " << ++count << ": " << endl;
+        infile >> destination >> adults >> children;
+        
+        if (destination == 1)
+            charge = 500;
+        if (destination == 2)
+            charge = 700;
+        else
+            charge == 450;
+            
+        double total = (adults * charge) + (children * (0.75 * charge));
+            
+        if (adults + children > 10)
+            total *= 0.9; // Apply 10% discount if more than 10 persons
+            
+        outfile << "=======================================" << endl;
+        outfile << "TOTAL charge ==> RM " << fixed << setprecision(2) << total << endl;
+        outfile << "=======================================" << endl;
+        outfile << endl;
+        
+        sum += total;
+        if (count == 1)
+            max = total;
+            min = total;
+        else
+        {
+            if (total > max)
+                max = total;
+            if (total < min)
+                min = total;
+        }
+    }
+    avg = sum / count;
+    
+    infile.close();
+    outfile.close();
+    
+    return 0;
+}
