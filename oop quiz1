@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+#define MAX 1000
+
+class Document {
+    // DATA
+    string words[MAX]; 
+    int numwords;
+    
+    public:
+    // OPERATIONS
+    // functions that processes the data
+    // purpose: read into the array
+    void read() {
+        string line;
+        cout << "Enter line" << endl;
+        getline(cin, line); // consume the end of line
+        getline(cin, line);
+    
+        // tokenize
+        istringstream iss(line);
+        string word;
+        while (iss >> word) {
+            words[numwords++] = word;
+        }
+    }
+    
+    // purpose: count the number of word equal to key
+    // parameter: 
+    // key: string to be searched
+    // return: 
+    // count as an integer
+    int countWord(string key) {
+        int count=0;
+        for (int i=0; i<numwords ; i++) {
+            if (words[i].compare(key) == 0)
+                count ++;
+        }
+        
+        return count;
+    }
+};
+
+int main() {
+    Document doc1;
+    
+    while (true) {
+        cout << "1) read line \n2) count specific words " << endl;
+        int option;
+        cin >> option;
+        
+        if (option == 1) { 
+            doc1.read();
+        }
+        else if (option == 2) {
+            int count = doc1.countWord("ok");
+            cout << "Num ok =" << count << endl;
+        }
+    }
+    return 0;
+}
