@@ -1,0 +1,170 @@
+import java.util.Scanner;
+
+public class CalculateAverage {
+ 
+    public static void main(String[] args) {
+        // 22001809 activity1 lab1
+        // Create object to reading user inputs
+        Scanner sc = new Scanner(System.in);
+         
+        // Read the size of the Array
+        System.out.println("Enter the size of the Array: ");
+        int n = sc.nextInt();
+         
+        // Declare the integer Array
+        int arr[] = new int[n];
+         
+        // Declaring a sum variable and initializing with 0
+        int sum = 0;
+ 
+        // Declaring it for calculating the average
+        int average = 0;
+ 
+        // Reading the Array values
+        System.out.println("Enter " + n + " element(s) of the Array: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+ 
+        // Iterating all array element to calculate the sum
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+        }
+ 
+        // Calculating the average
+        average = (int) sum / n;
+ 
+        // Printing the calculated average value
+        System.out.println("The sum of the given Array: " + sum);
+        System.out.println("The average of the given Array: " + average);
+ 
+    }
+ 
+}
+
+import java.util.Scanner;
+
+public class Duplicate {
+ 
+    public static void main(String[] args) {
+        // 22001809 activity2 lab1
+        // Create object to reading user inputs
+        Scanner sc = new Scanner(System.in);
+         
+        // Read the size of the Array
+        System.out.println("Enter the size of the Array: ");
+        int n = sc.nextInt();
+         
+        // Declare the integer Array
+        int arr[] = new int[n];
+ 
+        // Reading the Array values
+        System.out.println("Enter " + n + " element(s) of the Array: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+        System.out.println("Duplicate elements in given array: ");  
+        //Searches for duplicate element  
+        for(int i = 0; i < arr.length; i++) {  
+            for(int j = i + 1; j < arr.length; j++) {  
+                if(arr[i] == arr[j])  
+                    System.out.println(arr[j]);
+            }
+        }
+ 
+    }
+ 
+}
+
+import java.util.Scanner;
+
+public class OddEven {
+ 
+    public static void main(String[] args) {
+        // 22001809 activity3 lab1
+        // Create object to reading user inputs
+        Scanner sc = new Scanner(System.in);
+         
+        // Read the size of the Array
+        System.out.println("Enter the size of the Array: ");
+        int n = sc.nextInt();
+         
+        // Declare the integer Array
+        int arr[] = new int[n];
+ 
+        // Reading the Array values
+        System.out.println("Enter " + n + " element(s) of the Array: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+        System.out.println("Odd Numbers:");
+        for(int i=0;i<arr.length;i++){  
+            if(arr[i]%2!=0){  
+                System.out.println(arr[i]);  
+                
+            }  
+            
+        }  
+        
+        System.out.println("Even Numbers:");  
+        for(int i=0;i<arr.length;i++){  
+            if(arr[i]%2==0){  
+                System.out.println(arr[i]);  
+                
+            }  
+            
+        } 
+ 
+    }
+ 
+}
+
+
+import java.util.Scanner;
+public class Min
+{
+	public static void main(String[] args) {
+	    // 22001809 activity4 lab1
+		//three numbers
+        // Reading the Array values
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Input the first number: ");
+        int x = sc.nextInt();
+        System.out.print("Input the Second number: ");
+        int y = sc.nextInt();
+        System.out.print("Input the third number: ");
+        int z = sc.nextInt();
+        System.out.print("The smallest value is " + smallest(x, y, z)+"\n" );
+	}   
+	
+	public static double smallest(int x, int y, int z)
+    {
+        return Math.min(Math.min(x, y), z);
+    }
+}
+
+
+import java.util.Scanner;
+public class Sum
+// 22001809 activity5 lab1
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Input an integer: ");
+		int digits = sc.nextInt();
+		System.out.println("The sum is " + sumDigits(digits));
+	}
+	
+	public static int sumDigits(long n) {
+		int result = 0;
+		
+		while(n > 0) {
+			result += n % 10;
+			n /= 10;
+		}
+		
+		return result;
+	}
+}
