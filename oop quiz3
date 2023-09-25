@@ -1,0 +1,150 @@
+in main.cpp
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+// this was downloaded/bought
+#include "Document.h"  
+
+// inheritance/extension
+class EnhancedDocument : public Document {
+    // just put whatever extra that you want here
+    
+    public:
+    void printInverse() {
+    }
+};
+
+class SecureDocument : public Document/* BLANK 1 */ {
+ 
+    public:
+    void encrypt() {
+                // loop through list of words
+        for (int i=0; i<numWords()/* BLANK 2*/; i++) {
+            string word = getWord[i]/* BLANK 3*/; // get word at index i
+            
+            for (int j=0; j<word.length(); j++) {
+                int ascii = word[j];
+                word[j] = (char) (ascii + 1);
+            }
+            //function / method call / invocation
+            setWord(i, word)/* BLANK 4*/;
+        }
+    }
+    
+    void decrypt() {
+    }    
+};
+
+
+// Application code in here
+int main() {
+
+    // declare a vector of Document objects
+    vector<SecureDocument> documents;
+    
+    // current Document object
+    int index;
+
+    while (true) {
+        cout << "1) start new doc \n2) read line \n3) count specific words \n4) print doc \n5) encrypt \n6) choose doc " << endl;
+        int option; 
+        cin >> option;
+        
+        if (option == 1) {
+            index = documents.size();
+            SecureDocument newdoc;
+            documents.push_back(newdoc);
+            cout << "New document created" << endl;
+        }
+        else if (option == 2) { 
+            documents[index].read();
+        }
+        else if (option == 3) {
+            string word;
+            cout << "enter word" << endl;
+            cin >> word;
+            int count = documents[index].countWord(word);
+            cout << "Num ok =" << count << endl;
+        }
+        else if (option == 4) {
+            documents[index].print();
+        }
+        else if (option == 5) {
+            documents[index].encrypt();
+        }        
+        
+        else if (option == 6) {
+            cout << "which doc?" << endl;
+            cin >> index;
+        }        
+    }
+    return 0;
+}
+
+in Document.h
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+class Document {
+    // DATA
+    vector<string> words; 
+
+    public:
+    // OPERATIONS
+    // functions that processes the data
+
+    int numWords() {
+        return words.size();
+    }
+
+    string getWord(int i) {
+        return words[i];
+    }
+    
+    void setWord(int i, string word) {
+        words[i] = word;
+    }
+
+    // purpose: print to terminal the list of words
+    void print() {
+        for (int i=0; i<words.size(); i++)
+            cout << words[i] << " ";
+        cout << endl;
+    }
+    
+    // purpose: read into the array
+    void read() {
+        string line;
+        cout << "Enter line" << endl;
+        getline(cin, line); // consume the end of line
+        getline(cin, line);
+    
+        // tokenize
+        istringstream iss(line);
+        string word;
+        while (iss >> word) {
+            words.push_back(word);
+        }
+    }
+    
+    // purpose: count the number of word equal to key
+    // parameter: 
+    // key: string to be searched
+    // return: 
+    // count as an integer
+    int countWord(string key) {
+        int count=0;
+        for (int i=0; i<words.size() ; i++) {
+            if (words[i].compare(key) == 0)
+                count ++;
+        }
+        
+        return count;
+    }
+};
