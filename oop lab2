@@ -1,0 +1,77 @@
+//question1
+import java.util.Scanner;
+
+public class main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner (System.in);
+	    int sum = 0;
+	    System.out.println("Please enter 10 numbers only: ");
+	    for (int i=1; i<=10; i++){
+	        int n = sc.nextInt();
+	        sum = sum + n;
+	    }
+	    System.out.println("Sum of 10 integers : " + sum);
+	}
+}
+
+question2
+in Main.java :
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Student stud1 = new Student();
+
+        stud1.setData();
+
+        System.out.println("\nStudent Information:");
+        stud1.getData();
+	}
+}
+
+in Course.java :
+import java.util.Scanner;
+public class Course{
+String courseCode;
+String facultyCode;
+    public void setCode(){
+        Scanner sc = new Scanner (System.in);
+        System.out.println("Please enter your course code: ");
+        courseCode = sc.nextLine();
+        System.out.println("Please enter your faculty code: ");
+        facultyCode = sc.nextLine();
+    }
+    
+    public void getCode(){
+        System.out.println("Course code: " + courseCode);
+        System.out.println("Faculty code: " + facultyCode);
+    }
+    }
+
+in Student.java :
+import java.util.Scanner;
+public class Student extends Course {
+    public int studID;
+    public String studName;
+    public Course objectCourse;
+
+    public void setData() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter student name: ");
+        studName = sc.nextLine();
+
+        System.out.print("Enter student ID: ");
+        studID = sc.nextInt();
+        sc.nextLine(); // Consume the newline character
+
+        objectCourse = new Course();
+        objectCourse.setCode();
+    }
+
+    public void getData() {
+        System.out.println("Student Name: " + studName);
+        System.out.println("Student ID: " + studID);
+        objectCourse.getCode();
+    }
+}
